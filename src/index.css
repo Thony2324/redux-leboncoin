@@ -11,7 +11,57 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* CUSTOM LBC */
+.lbc-bgcolor {
+  background-color: #f56b29;
+  color: #fff;
+}
+
+.lbc-textcolor {
+  color: #f56b29;
+}
+
 /* HEADER */
 .logo {
   width: 130px;
+  margin-right: 100px;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.header-left {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.btn-new-ad {
+  margin-right: 30px;
+}
+
+.header-right {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header-right ul {
+  padding: 0;
+  margin: 0;
+}
+
+.header-right li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 30px;
+}
+
+/* FOOTER */
+footer {
+  background-color: #474747;
+  color: #fff;
 }

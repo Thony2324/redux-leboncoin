@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <div className="uk-section uk-section-muted uk-section-small">
         <div className="uk-container">Content</div>
       </div>
+      <Footer />
     </div>
   );
 }
