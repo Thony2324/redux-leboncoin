@@ -17,6 +17,14 @@ body {
   color: #fff;
 }
 
+.lbc-bgcolor:hover {
+  background-color: #c0562a;
+}
+
+.lbc-bgcolor a {
+  color: #fff;
+}
+
 .lbc-textcolor {
   color: #f56b29;
 }
@@ -40,6 +48,12 @@ body {
 
 .btn-new-ad {
   margin-right: 30px;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.btn-new-ad a {
+  text-decoration: none;
 }
 
 .header-right {
