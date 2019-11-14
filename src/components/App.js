@@ -6,6 +6,7 @@ import Home from "./Home";
 import NewAd from "./NewAd";
 import Login from "./Login";
 import Signup from "./Signup";
+import AdDetail from "./AdDetail";
 import NoMatch from "./NoMatch";
 
 class App extends React.Component {
@@ -18,9 +19,14 @@ class App extends React.Component {
             <div className="uk-container">
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/newad" component={NewAd} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
+                <Route exact path="/newad" component={NewAd} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={Signup} />
+                <Route
+                  exact
+                  path="/ad/:id"
+                  render={props => <AdDetail {...props} />}
+                />
                 <Route component={NoMatch} />
               </Switch>
             </div>

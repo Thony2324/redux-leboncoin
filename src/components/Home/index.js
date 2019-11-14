@@ -25,17 +25,22 @@ class Home extends React.Component {
   }
 
   render() {
-    // IF DATA NULL OR LOADING
+    // If data null or loading
     if (this.props.ads.data === null || this.props.ads.isLoading) {
       return <Loader />;
     }
-
+    // return data by default
     return (
-      <div>
-        <h1>Annonces</h1>
+      <div className="homepage">
+        <h1>{this.props.ads.data.count} annonces</h1>
         {this.props.ads.data.offers.map(offer => {
           return (
-            <AdItem key={offer._id} title={offer.title} price={offer.price} />
+            <AdItem
+              key={offer._id}
+              id={offer._id}
+              title={offer.title}
+              price={offer.price}
+            />
           );
         })}
       </div>
