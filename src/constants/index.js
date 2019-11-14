@@ -1,0 +1,3 @@
+export const SET_ADS_REQUEST = "SET_ADS_REQUEST";
+export const SET_ADS_SUCCESS = "SET_ADS_SUCCESS";
+export const SET_ADS_ERROR = "SET_ADS_ERROR";
