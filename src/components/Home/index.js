@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 //import Api from "../../utils/Api";
 import { connect } from "react-redux";
 import { fetchAds } from "../../actions";
@@ -47,5 +48,10 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  ads: PropTypes.object.isRequired,
+  getAds: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchDetailAd } from "../../actions";
@@ -70,5 +71,10 @@ class AdDetail extends React.Component {
     );
   }
 }
+
+AdDetail.propTypes = {
+  detail: PropTypes.object.isRequired,
+  getDetailAd: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdDetail);
