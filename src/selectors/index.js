@@ -5,3 +5,7 @@ export function selectAds(state) {
 export function selectAdDetail(state) {
   return state.ads;
 }
+
+export function selectCurrentUser(state) {
+  return state.user;
+}

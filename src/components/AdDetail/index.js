@@ -7,25 +7,6 @@ import { selectAdDetail } from "../../selectors";
 import Loader from "../Loader";
 import { formatPrice } from "../../utils";
 
-// const mapStateToProps = (state, ownProps) => {
-//   console.log("id = ", ownProps.match.params.id);
-//   return {
-//     //currentAd: selectAdById(state, ownProps.match.params.id)
-//   };
-// };
-
-const mapStateToProps = state => {
-  return {
-    detail: selectAdDetail(state)
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getDetailAd: id => fetchDetailAd(dispatch, id) // renvoie une fonction
-  };
-};
-
 class AdDetail extends React.Component {
   componentDidMount() {
     this.props.getDetailAd(this.props.match.params.id);
@@ -75,6 +56,18 @@ class AdDetail extends React.Component {
 AdDetail.propTypes = {
   detail: PropTypes.object.isRequired,
   getDetailAd: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    detail: selectAdDetail(state)
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getDetailAd: id => fetchDetailAd(dispatch, id) // renvoie une fonction
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdDetail);

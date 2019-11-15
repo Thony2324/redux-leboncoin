@@ -7,18 +7,6 @@ import { selectAds } from "../../selectors";
 import Loader from "../Loader";
 import AdItem from "../AdItem";
 
-const mapStateToProps = state => {
-  return {
-    ads: selectAds(state)
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getAds: () => fetchAds(dispatch) // renvoie une fonction
-  };
-};
-
 class Home extends React.Component {
   componentDidMount() {
     //Api.getAds();
@@ -52,6 +40,18 @@ class Home extends React.Component {
 Home.propTypes = {
   ads: PropTypes.object.isRequired,
   getAds: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    ads: selectAds(state)
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAds: () => fetchAds(dispatch) // renvoie une fonction
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

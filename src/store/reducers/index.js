@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import { adsReducer } from "./adsReducer";
-//import { accountReducer } from "./accountReducer";
+import { userReducer } from "./userReducer";
 
 export const reducer = combineReducers({
-  ads: adsReducer
-  //account: accountReducer
+  ads: adsReducer,
+  user: userReducer
 });
