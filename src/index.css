@@ -253,6 +253,15 @@ footer {
   margin-right: 50px;
 }
 
+.uk-card-media-top {
+  background: #ccc;
+  text-align: center;
+}
+
+.uk-card-media-top img {
+  max-height: 400px;
+}
+
 .ad-detail-right {
   flex: 1;
   text-align: center;

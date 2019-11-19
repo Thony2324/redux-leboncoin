@@ -19,7 +19,7 @@ class AdDetail extends React.Component {
       return <Loader />;
     }
 
-    const { title, price, description, creator } = this.props.detail.dataDetail;
+    const { title, price, description, pictures, creator } = this.props.detail.dataDetail;
 
     // return data by default
     return (
@@ -29,9 +29,14 @@ class AdDetail extends React.Component {
           <div className="ad-detail-wrapper uk-margin-top">
             <div className="ad-detail-left">
               <div className="uk-card uk-card-default">
-                <div className="uk-card-media-top">
-                  <img src={"https://via.placeholder.com/500x250"} alt={title} />
-                </div>
+                {pictures.length > 0 ? (
+                  <div className="uk-card-media-top">
+                    <img src={pictures[0]} alt={title} />
+                  </div>
+                ) : (
+                  ""
+                )}
+
                 <div className="uk-card-body">
                   <h3 className="uk-card-title">{title}</h3>
                   {price !== null ? <p className="lbc-textcolor">{formatPrice(price)}</p> : ""}
