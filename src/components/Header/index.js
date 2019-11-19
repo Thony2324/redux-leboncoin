@@ -2,14 +2,19 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { userLogout } from "../../actions";
+//import { createBrowserHistory } from "history";
+
+//const history = createBrowserHistory();
 
 class Header extends React.Component {
   handleLogout = () => {
     this.props.logout();
+    //history.push("/");
   };
 
   render() {
     const { user } = this.props;
+
     return (
       <header className="uk-padding-small uk-padding-remove-horizontal">
         <div className="uk-container">

@@ -1,10 +1,11 @@
 import React from "react";
+import MainLayout from "../MainLayout";
 
 const NewAd = () => {
   return (
-    <div>
+    <MainLayout>
       <h1>Déposer une annonce</h1>
-    </div>
+    </MainLayout>
   );
 };
 

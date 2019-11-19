@@ -11,6 +11,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+canvas {
+  background-color: #ccc;
+}
+
 /* LOADER */
 .sk-fading-circle {
   margin: 0;
@@ -189,7 +193,7 @@ body {
   justify-content: space-between;
 }
 .header-left {
-  width: 50%;
+  width: 65%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -206,7 +210,7 @@ body {
 }
 
 .header-right {
-  width: 50%;
+  width: 35%;
   display: flex;
   justify-content: flex-end;
   align-items: center;

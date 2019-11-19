@@ -80,7 +80,7 @@ export const userLoginFetch = async (dispatch, user) => {
   })
     .then(response => response.json())
     .then(data => {
-      console.log("data : ", data);
+      //console.log("data : ", data);
       //if (data.message) {
       // Here you should have logic to handle invalid creation of a user.
       // This assumes your Rails API will return a JSON object with a key of
@@ -99,6 +99,8 @@ export const userLoginFetch = async (dispatch, user) => {
 };
 
 export const userLogout = async dispatch => {
+  // console.log(history);
+  // history.push("/");
   localStorage.removeItem("token");
   localStorage.removeItem("user");
   dispatch({ type: LOGOUT_USER });

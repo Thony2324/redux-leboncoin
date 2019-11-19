@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchAds } from "../../actions";
 import { selectAds } from "../../selectors";
+import MainLayout from "../MainLayout";
 import Loader from "../Loader";
 import AdItem from "../AdItem";
 
@@ -20,19 +21,22 @@ class Home extends React.Component {
     }
     // return data by default
     return (
-      <div className="homepage">
-        <h1>{this.props.ads.data.count} annonces</h1>
-        {this.props.ads.data.offers.map(offer => {
-          return (
-            <AdItem
-              key={offer._id}
-              id={offer._id}
-              title={offer.title}
-              price={offer.price}
-            />
-          );
-        })}
-      </div>
+      <MainLayout>
+        <div className="homepage">
+          <h1>{this.props.ads.data.count} annonces</h1>
+          {this.props.ads.data.offers.map(offer => {
+            return (
+              <AdItem
+                key={offer._id}
+                id={offer._id}
+                title={offer.title}
+                price={offer.price}
+                picture={offer.pictures[0]}
+              />
+            );
+          })}
+        </div>
+      </MainLayout>
     );
   }
 }

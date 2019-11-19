@@ -49,10 +49,6 @@ export const adsReducer = (state = initialState, action) => {
       };
     case SET_AD_DETAIL_ERROR:
       return state;
-    //   return {
-    //     ...state,
-    //     data: null
-    //   };
     default:
       return state;
   }

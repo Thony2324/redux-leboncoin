@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { formatPrice } from "../../utils";
 import { Link } from "react-router-dom";
 
-const AdItem = ({ id, title, price }) => {
+const AdItem = ({ id, title, price, picture }) => {
   return (
     <Link to={`/ad/${id}`}>
       <div
@@ -11,15 +11,12 @@ const AdItem = ({ id, title, price }) => {
         data-uk-grid
       >
         <div className="uk-card-media-left uk-cover-container uk-width-auto">
-          <img
-            src="https://via.placeholder.com/200x150"
-            alt={title}
-            data-uk-cover
-          />
+          <img src={picture} alt={title} data-uk-cover />
           <canvas width="200" height="150"></canvas>
         </div>
         <div className="uk-card-body">
           <h3 className="uk-card-title">{title}</h3>
+
           {price !== null ? (
             <p className="lbc-textcolor">{formatPrice(price)}</p>
           ) : (

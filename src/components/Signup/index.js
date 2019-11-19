@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { userPostFetch } from "../../actions";
 //import { selectCurrentUser } from "../../selectors";
+import MainLayout from "../MainLayout";
 
 class Signup extends React.Component {
   state = {
@@ -30,50 +31,52 @@ class Signup extends React.Component {
     // check if object is empty...
     // TODO : message de confirmation que le user a bien été créé
     return (
-      <form className="uk-form-stacked" onSubmit={this.handleSubmit}>
-        <h1>Créer un compte</h1>
-        <div className="uk-margin">
-          <label className="uk-form-label">Username</label>
-          <div className="uk-form-controls">
-            <input
-              name="username"
-              className="uk-input uk-form-width-large"
-              placeholder="Username"
-              value={this.state.username}
-              onChange={this.handleChange}
-            />
+      <MainLayout>
+        <form className="uk-form-stacked" onSubmit={this.handleSubmit}>
+          <h1>Créer un compte</h1>
+          <div className="uk-margin">
+            <label className="uk-form-label">Username</label>
+            <div className="uk-form-controls">
+              <input
+                name="username"
+                className="uk-input uk-form-width-large"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
-        </div>
-        <div className="uk-margin">
-          <label className="uk-form-label">Email</label>
-          <div className="uk-form-controls">
-            <input
-              name="email"
-              className="uk-input uk-form-width-large"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
+          <div className="uk-margin">
+            <label className="uk-form-label">Email</label>
+            <div className="uk-form-controls">
+              <input
+                name="email"
+                className="uk-input uk-form-width-large"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
-        </div>
-        <div className="uk-margin">
-          <label className="uk-form-label">Password</label>
-          <div className="uk-form-controls">
-            <input
-              type="password"
-              name="password"
-              className="uk-input uk-form-width-large"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
+          <div className="uk-margin">
+            <label className="uk-form-label">Password</label>
+            <div className="uk-form-controls">
+              <input
+                type="password"
+                name="password"
+                className="uk-input uk-form-width-large"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
-        </div>
 
-        <button type="submit" className="uk-button uk-button-primary">
-          Créer
-        </button>
-      </form>
+          <button type="submit" className="uk-button uk-button-primary">
+            Créer
+          </button>
+        </form>
+      </MainLayout>
     );
     // } else {
     //   return (
