@@ -2,9 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { userLogout } from "../../actions";
-//import { createBrowserHistory } from "history";
-
-//const history = createBrowserHistory();
+import { selectCurrentUser } from "../../selectors";
 
 class Header extends React.Component {
   handleLogout = () => {
@@ -13,8 +11,6 @@ class Header extends React.Component {
   };
 
   render() {
-    const { user } = this.props;
-
     return (
       <header className="uk-padding-small uk-padding-remove-horizontal">
         <div className="uk-container">
@@ -44,15 +40,10 @@ class Header extends React.Component {
                   </Link>
                 </li>
                 <li>
-                  {user !== undefined ? (
-                    <div>
-                      <button
-                        className="uk-button uk-button-default"
-                        onClick={() => this.handleLogout()}
-                      >
-                        Se déconnecter
-                      </button>
-                    </div>
+                  {this.props.user !== undefined && this.props.user.username !== "" ? (
+                    <button className="uk-button uk-button-default" onClick={() => this.handleLogout()}>
+                      Se déconnecter
+                    </button>
                   ) : (
                     <Link className="uk-text-secondary" to="/login">
                       Se connecter
@@ -68,8 +59,14 @@ class Header extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: selectCurrentUser(state)
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   logout: () => userLogout(dispatch)
 });
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

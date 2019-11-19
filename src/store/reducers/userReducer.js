@@ -1,7 +1,10 @@
 import { LOGIN_USER, LOGOUT_USER } from "../../constants";
 
+const local_storage_user = JSON.parse(localStorage.getItem("user"));
+
 const initialState = {
-  currentUser: {}
+  username: local_storage_user !== null ? local_storage_user.username : "",
+  token: local_storage_user !== null ? local_storage_user.token : ""
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -9,12 +12,14 @@ export const userReducer = (state = initialState, action) => {
     case LOGIN_USER:
       return {
         ...state,
-        currentUser: action.payload
+        username: action.payload.account.username,
+        token: action.payload.token
       };
     case LOGOUT_USER:
       return {
         ...state,
-        currentUser: {}
+        username: "",
+        token: ""
       };
     default:
       return state;

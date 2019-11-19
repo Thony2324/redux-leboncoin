@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchDetailAd } from "../../actions";
-import { selectAdDetail } from "../../selectors";
+import { selectAdDetail, selectCurrentUser } from "../../selectors";
 import Loader from "../Loader";
 import { formatPrice } from "../../utils";
 import MainLayout from "../MainLayout";
@@ -30,18 +30,11 @@ class AdDetail extends React.Component {
             <div className="ad-detail-left">
               <div className="uk-card uk-card-default">
                 <div className="uk-card-media-top">
-                  <img
-                    src={"https://via.placeholder.com/500x250"}
-                    alt={title}
-                  />
+                  <img src={"https://via.placeholder.com/500x250"} alt={title} />
                 </div>
                 <div className="uk-card-body">
                   <h3 className="uk-card-title">{title}</h3>
-                  {price !== null ? (
-                    <p className="lbc-textcolor">{formatPrice(price)}</p>
-                  ) : (
-                    ""
-                  )}
+                  {price !== null ? <p className="lbc-textcolor">{formatPrice(price)}</p> : ""}
                 </div>
               </div>
               <h4>Description</h4>
@@ -60,13 +53,15 @@ class AdDetail extends React.Component {
 }
 
 AdDetail.propTypes = {
+  user: PropTypes.object.isRequired,
   detail: PropTypes.object.isRequired,
   getDetailAd: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
   return {
-    detail: selectAdDetail(state)
+    detail: selectAdDetail(state),
+    user: selectCurrentUser(state)
   };
 };
 

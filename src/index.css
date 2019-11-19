@@ -185,7 +185,7 @@ canvas {
 /* HEADER */
 .logo {
   width: 130px;
-  margin-right: 100px;
+  margin-right: 80px;
 }
 
 .header-wrapper {
@@ -193,7 +193,7 @@ canvas {
   justify-content: space-between;
 }
 .header-left {
-  width: 65%;
+  width: 60%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -210,7 +210,7 @@ canvas {
 }
 
 .header-right {
-  width: 35%;
+  width: 40%;
   display: flex;
   justify-content: flex-end;
   align-items: center;

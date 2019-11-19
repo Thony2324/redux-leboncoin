@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 //import Api from "../../utils/Api";
 import { connect } from "react-redux";
 import { fetchAds } from "../../actions";
-import { selectAds } from "../../selectors";
+import { selectAds, selectCurrentUser } from "../../selectors";
 import MainLayout from "../MainLayout";
 import Loader from "../Loader";
 import AdItem from "../AdItem";
@@ -23,6 +23,11 @@ class Home extends React.Component {
     return (
       <MainLayout>
         <div className="homepage">
+          {this.props.user.token !== "" ? (
+            <span className="uk-heading-small lbc-textcolor">Bienvenue {this.props.user.username}</span>
+          ) : (
+            ""
+          )}
           <h1>{this.props.ads.data.count} annonces</h1>
           {this.props.ads.data.offers.map(offer => {
             return (
@@ -48,7 +53,8 @@ Home.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    ads: selectAds(state)
+    ads: selectAds(state),
+    user: selectCurrentUser(state)
   };
 };
 

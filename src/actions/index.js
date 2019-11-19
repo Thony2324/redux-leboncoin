@@ -87,8 +87,9 @@ export const userLoginFetch = async (dispatch, user) => {
       // 'message' if there is an error with creating the user, i.e. invalid username
       //} else {
       // Permet de connecter directement l'utilisateur ajouté
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", data.account.username);
+      const obj_user = { token: data.token, username: data.account.username };
+      localStorage.setItem("user", JSON.stringify(obj_user));
+      //localStorage.setItem("user", data.account.username);
       dispatch({ type: LOGIN_USER, payload: data });
       //}
     })
@@ -101,7 +102,6 @@ export const userLoginFetch = async (dispatch, user) => {
 export const userLogout = async dispatch => {
   // console.log(history);
   // history.push("/");
-  localStorage.removeItem("token");
   localStorage.removeItem("user");
   dispatch({ type: LOGOUT_USER });
 };

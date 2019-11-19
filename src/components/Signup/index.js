@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { userPostFetch } from "../../actions";
-//import { selectCurrentUser } from "../../selectors";
+import { selectCurrentUser } from "../../selectors";
 import MainLayout from "../MainLayout";
 
 class Signup extends React.Component {
@@ -24,9 +24,6 @@ class Signup extends React.Component {
   };
 
   render() {
-    // console.log("Token = ", localStorage.token);
-    //console.log("Object = ", Object.values(this.props.user.currentUser));
-
     //if (Object.keys(this.props.user.currentUser).length === 0) {
     // check if object is empty...
     // TODO : message de confirmation que le user a bien été créé
@@ -90,11 +87,11 @@ class Signup extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     user: selectCurrentUser(state)
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    user: selectCurrentUser(state)
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -102,4 +99,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

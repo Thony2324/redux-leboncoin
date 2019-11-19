@@ -4,5 +4,5 @@ import { userReducer } from "./userReducer";
 
 export const reducer = combineReducers({
   ads: adsReducer,
-  user: userReducer
+  currentUser: userReducer
 });

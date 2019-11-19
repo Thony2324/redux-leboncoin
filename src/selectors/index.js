@@ -7,5 +7,5 @@ export function selectAdDetail(state) {
 }
 
 export function selectCurrentUser(state) {
-  return state.user;
+  return state.currentUser;
 }
