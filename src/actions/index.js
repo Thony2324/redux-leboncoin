@@ -9,10 +9,18 @@ import {
   LOGOUT_USER
 } from "../constants";
 
-export const fetchAds = async dispatch => {
+export const fetchAds = async (
+  dispatch,
+  searchTitle = "",
+  searchPriceMin = "",
+  searchPriceMax = "",
+  searchTri = "date-desc"
+) => {
   dispatch({ type: SET_ADS_REQUEST });
   // FETCH API
-  await fetch("https://leboncoin-api.herokuapp.com/api/offer/with-count")
+  await fetch(
+    `https://leboncoin-api.herokuapp.com/api/offer/with-count?sort=${searchTri}&title=${searchTitle}&priceMin=${searchPriceMin}&priceMax=${searchPriceMax}`
+  )
     .then(response => response.json())
     .then(data => {
       setTimeout(() => {
@@ -51,19 +59,9 @@ export const userPostFetch = async (dispatch, user) => {
   })
     .then(response => response.json())
     .then(data => {
-      //console.log("data : ", data);
-      //if (data.message) {
-      // Here you should have logic to handle invalid creation of a user.
-      // This assumes your Rails API will return a JSON object with a key of
-      // 'message' if there is an error with creating the user, i.e. invalid username
-      //} else {
-      // Permet de connecter directement l'utilisateur ajouté
-      // localStorage.setItem("token", data.token);
-      // dispatch({ type: LOGIN_USER, payload: data });
-      //}
+      console.log("data : ", data);
     })
     .catch(error => {
-      //dispatch({ type: SET_AD_DETAIL_ERROR, payload: error });
       console.log(error);
     });
 };
@@ -80,28 +78,16 @@ export const userLoginFetch = async (dispatch, user) => {
   })
     .then(response => response.json())
     .then(data => {
-      //console.log("data : ", data);
-      //if (data.message) {
-      // Here you should have logic to handle invalid creation of a user.
-      // This assumes your Rails API will return a JSON object with a key of
-      // 'message' if there is an error with creating the user, i.e. invalid username
-      //} else {
-      // Permet de connecter directement l'utilisateur ajouté
       const obj_user = { token: data.token, username: data.account.username };
       localStorage.setItem("user", JSON.stringify(obj_user));
-      //localStorage.setItem("user", data.account.username);
       dispatch({ type: LOGIN_USER, payload: data });
-      //}
     })
     .catch(error => {
-      //dispatch({ type: SET_AD_DETAIL_ERROR, payload: error });
       console.log(error);
     });
 };
 
 export const userLogout = async dispatch => {
-  // console.log(history);
-  // history.push("/");
   localStorage.removeItem("user");
   dispatch({ type: LOGOUT_USER });
 };
