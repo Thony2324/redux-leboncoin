@@ -21,10 +21,10 @@ class Home extends React.Component {
     }
     // return data by default
     return (
-      <MainLayout>
+      <MainLayout history={this.props.history}>
         <div className="homepage">
           {this.props.user.token !== "" ? (
-            <span className="uk-heading-small lbc-textcolor">Bienvenue {this.props.user.username}</span>
+            <span className="uk-heading-small lbc-textcolor">Bonjour {this.props.user.username}</span>
           ) : (
             ""
           )}

@@ -6,7 +6,7 @@ import { selectCurrentUser } from "../../selectors";
 class NewAd extends React.Component {
   render() {
     return (
-      <MainLayout>
+      <MainLayout history={this.props.history}>
         <React.Fragment>
           <h1>Déposer une annonce</h1>
           {this.props.user.username}

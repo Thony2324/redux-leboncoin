@@ -28,7 +28,7 @@ class Signup extends React.Component {
     // check if object is empty...
     // TODO : message de confirmation que le user a bien été créé
     return (
-      <MainLayout>
+      <MainLayout history={this.props.history}>
         <form className="uk-form-stacked" onSubmit={this.handleSubmit}>
           <h1>Créer un compte</h1>
           <div className="uk-margin">

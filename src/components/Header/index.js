@@ -7,7 +7,7 @@ import { selectCurrentUser } from "../../selectors";
 class Header extends React.Component {
   handleLogout = () => {
     this.props.logout();
-    //history.push("/");
+    this.props.history.push("/");
   };
 
   render() {

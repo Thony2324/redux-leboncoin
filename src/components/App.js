@@ -17,8 +17,8 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={() => {
-              return <Home />;
+            render={props => {
+              return <Home history={props.history} />;
             }}
           />
           <Route
@@ -50,7 +50,7 @@ class App extends React.Component {
           <Route
             path="/ad/:id"
             render={props => {
-              return <AdDetail match={props.match} />;
+              return <AdDetail history={props.history} match={props.match} />;
             }}
           />
           <Route component={NoMatch} />

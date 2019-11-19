@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { fetchDetailAd } from "../../actions";
 import { selectAdDetail, selectCurrentUser } from "../../selectors";
 import Loader from "../Loader";
-import { formatPrice } from "../../utils";
 import MainLayout from "../MainLayout";
+import { formatPrice } from "../../utils";
 
 class AdDetail extends React.Component {
   componentDidMount() {
@@ -23,7 +23,7 @@ class AdDetail extends React.Component {
 
     // return data by default
     return (
-      <MainLayout>
+      <MainLayout history={this.props.history}>
         <div>
           <Link to="/">Retour aux annonces</Link>
           <div className="ad-detail-wrapper uk-margin-top">
