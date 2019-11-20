@@ -14,12 +14,12 @@ export const fetchAds = async (
   searchTitle = "",
   searchPriceMin = "",
   searchPriceMax = "",
-  searchTri = "date-desc"
+  searchSort = "date-desc"
 ) => {
   dispatch({ type: SET_ADS_REQUEST });
   // FETCH API
   await fetch(
-    `https://leboncoin-api.herokuapp.com/api/offer/with-count?sort=${searchTri}&title=${searchTitle}&priceMin=${searchPriceMin}&priceMax=${searchPriceMax}`
+    `https://leboncoin-api.herokuapp.com/api/offer/with-count?sort=${searchSort}&title=${searchTitle}&priceMin=${searchPriceMin}&priceMax=${searchPriceMax}`
   )
     .then(response => response.json())
     .then(data => {
