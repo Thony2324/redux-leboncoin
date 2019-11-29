@@ -16,29 +16,57 @@ class NewAd extends React.Component {
   state = {
     title: "",
     description: "",
-    price: ""
+    price: "",
+    pictures: ""
+  };
+
+  handleFileChange = e => {
+    this.setState({
+      [e.target.name]: e.target.files[0]
+    });
   };
 
   handleSubmit = async values => {
     // nécessaire d'utiliser async/await afin que le post soit fini avant de faire l'update
-    //console.log("history : ", this.props.history);
-    // console.log("token : ", this.props.user.token);
-    console.log("ad", {
-      title: values.title,
-      description: values.description,
-      price: parseInt(values.price, 10)
-    });
+
+    // console.log("ad", {
+    //   title: values.title,
+    //   description: values.description,
+    //   price: parseInt(values.price, 10)
+    // });
+
+    const formData = new FormData();
+    // for (let name in this.state) {
+    //   formData.append(name, this.state[name]);
+    // }
+    for (let i = 0; i < this.state.pictures.length; i++) {
+      // on ajoute chaque fichier isolé dans le state, au FormData
+      formData.append(`picture${i}`, this.state.pictures[i]);
+    }
+    //console.log("File0 = ", formData.get("pictures"));
+
+    await axios.post(
+      "https://leboncoin-api.herokuapp.com/api/offer/lbc-academy/upload",
+      {
+        data: formData
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${this.props.user.token}`,
+          "Content-Type": "multipart/form-data"
+        }
+      }
+    );
 
     await axios
       .post(
-        "https://leboncoin-api.herokuapp.com/api/offer/publish",
+        "https://leboncoin-api.herokuapp.com/api/offer/lbc-academy/publish",
         {
           title: values.title,
           description: values.description,
           price: parseInt(values.price, 10)
         },
         {
-          // le serveur veut que le token soit passé en header de type Bearer
           headers: {
             Authorization: `Bearer ${this.props.user.token}`
           }
@@ -51,24 +79,6 @@ class NewAd extends React.Component {
         console.log(error);
       });
 
-    // await fetch("https://leboncoin-api.herokuapp.com/api/offer/publish", {
-    //   method: "POST",
-    //   //mode: "no-cors",
-    //   headers: {
-    //     Authorization: `Bearer ${this.props.user.token}`,
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     title: values.title,
-    //     description: values.description,
-    //     price: parseInt(values.price, 10)
-    //   })
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log("data : ", data);
-    //   });
     // redirect to home
     await this.props.history.push("/");
   };
@@ -109,6 +119,29 @@ class NewAd extends React.Component {
                     <Field name="price" type="text" placeholder="Price" className="uk-input uk-form-width-large" />
                   </div>
                   {errors.price && touched.price ? <div className="uk-text-danger">{errors.price}</div> : null}
+                </div>
+                <div className="uk-margin">
+                  <input name="image" type="file" onChange={this.handleFileChange} />
+                  {/* <input
+                    type="file"
+                    name="picture"
+                    className="xuk-input xuk-form-width-large"
+                    placeholder="Image"
+                    value={this.state.file}
+                    onChange={this.handleChangeFile}
+                  /> */}
+                  {/* <div data-uk-form-custom="target: true">
+                    <input type="file" />
+                    <input
+                      className="uk-input uk-form-width-medium"
+                      type="text"
+                      name="files"
+                      placeholder="Select file"
+                    />
+                  </div>
+                  <button className="uk-button uk-button-default" onClick={values => this.handleUploadImage(values)}>
+                    Upload
+                  </button> */}
                 </div>
                 <div className="uk-margin">
                   <button className="uk-button uk-button-primary" type="submit">

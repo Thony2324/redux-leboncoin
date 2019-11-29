@@ -11,6 +11,7 @@ import NoMatch from "./NoMatch";
 
 class App extends React.Component {
   render() {
+    console.log("Token = ", this.props.user.token);
     return (
       <Router>
         <Switch>
@@ -19,26 +20,6 @@ class App extends React.Component {
             path="/"
             render={props => {
               return <Home history={props.history} />;
-            }}
-          />
-          <Route
-            path="/newad"
-            render={props => {
-              if (this.props.user.token !== "") {
-                return <NewAd history={props.history} />;
-              } else {
-                return <Redirect to={{ pathname: "/login" }} />;
-              }
-            }}
-          />
-          <Route
-            path="/login"
-            render={props => {
-              if (this.props.user.token === "") {
-                return <Login history={props.history} />;
-              } else {
-                return <Redirect to={{ pathname: "/" }} />;
-              }
             }}
           />
           <Route
@@ -53,6 +34,38 @@ class App extends React.Component {
               return <AdDetail history={props.history} match={props.match} />;
             }}
           />
+
+          {this.props.user.token !== "" ? (
+            <React.Fragment>
+              <Route
+                path="/login"
+                render={props => {
+                  return <Login history={props.history} />;
+                }}
+              >
+                {/* Redirige vers la home si le chemin dans l'url est login (pas besoin d'accéder au form login si on est déjà connecté) */}
+                <Redirect to="/" />
+              </Route>
+
+              <Route
+                path="/newad"
+                render={props => {
+                  return <NewAd history={props.history} />;
+                }}
+              />
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <Route
+                path="/login"
+                render={props => {
+                  return <Login history={props.history} />;
+                }}
+              />
+              {/* Redirige vers login si le chemin dans l'url ne correspond pas à login ou signup */}
+              <Redirect to="/login" />
+            </React.Fragment>
+          )}
           <Route component={NoMatch} />
         </Switch>
       </Router>
